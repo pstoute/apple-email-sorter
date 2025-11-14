@@ -68,8 +68,8 @@ ollama serve &
 
 ```bash
 # Clone the repository
-git clone <your-repo-url>
-cd email_sorter
+git clone https://github.com/pstoute/apple-email-sorter.git
+cd apple-email-sorter
 
 # Install Python dependencies
 pip3 install -r requirements.txt
@@ -77,7 +77,22 @@ pip3 install -r requirements.txt
 
 ### 3. Configure Your Settings
 
-Edit `config.py` to customize:
+**IMPORTANT**: If you cloned this repo, you should review `config.py` and update the PostgreSQL credentials:
+
+```python
+# In config.py, update these settings:
+POSTGRES_CONFIG = {
+    "host": "localhost",
+    "port": 5432,
+    "database": "email_sorter",
+    "user": "your_postgres_user",     # ⚠️ Change this
+    "password": "your_postgres_pass"  # ⚠️ Change this
+}
+```
+
+**Security Note**: The default PostgreSQL credentials in `config.py` are placeholders. Change them if you plan to use PostgreSQL. For JSON-only mode (no database), set `USE_POSTGRES = False`.
+
+You can also customize categories and other settings in `config.py`:
 
 ```python
 # Use Inbox Zero categories (recommended)
